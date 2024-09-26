@@ -1,4 +1,4 @@
-name: Python packages 
+name: Node.js CI 
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
           #POLICY_URL: https://app.dev.veribom.com/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     container:
-      image: python:3.10-alpine
+      image: node:16-alpine
       options: --cap-add=NET_ADMIN
     steps:
     - uses: invisirisk/pse-action@v1.0.6
@@ -34,8 +34,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Checkout the code
       uses: actions/checkout@v3
-    - name: Install Python dependencies
+    - name: Install node packages
       run: |
-        python3 -m pip install --upgrade pip
-        pip install -r requirements.txt
+        npm install
    
